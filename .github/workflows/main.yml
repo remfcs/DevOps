@@ -39,7 +39,7 @@ jobs:
       - name: Build image and push backend
         uses: docker/build-push-action@v3
         with:
-          context: ./api/simple-api-student-main
+          context: ./TP1/API/simple-api-student-main
           tags: ${{ secrets.DOCKER_NAME }}/backend:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
