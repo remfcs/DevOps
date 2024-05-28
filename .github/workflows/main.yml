@@ -18,4 +18,6 @@ jobs:
           java-version: '17'
 
       - name: Build and test with Maven
-        run: mvn clean verify
+        run: |
+          cd TP1/API/simple-api-student-main
+          mvn clean verify
