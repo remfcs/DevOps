@@ -25,7 +25,7 @@ jobs:
           mvn clean verify
 
       - name: SonarCloud analysis
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=tp-devops-remy_tp-devops-main -Dsonar.organization=tp-devops-remy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./TP1/simple-api-student-main/pom.xml
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=tp-devops-remy_tp-devops-main -Dsonar.organization=tp-devops-remy -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./TP1/API/simple-api-student-main/pom.xml
 
   build-and-push-docker-image:
     needs: test-backend
