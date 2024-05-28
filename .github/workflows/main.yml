@@ -30,29 +30,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2.5.0
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_NAME }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Login to DockerHub
+        run: docker login -u ${{ secrets.DOCKER_NAME }} -p ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build image and push backend
         uses: docker/build-push-action@v3
         with:
-          context: ./TP1/API/simple-api-student-main
+          context: ./api/simple-api-student-main
           tags: ${{ secrets.DOCKER_NAME }}/backend:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push database
         uses: docker/build-push-action@v3
         with:
-          context: ./TP1/db
+          context: ./db
           tags: ${{ secrets.DOCKER_NAME }}/my_postgres:latest
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Build image and push httpd
         uses: docker/build-push-action@v3
         with:
-          context: ./TP1/serveur
+          context: ./front
           tags: ${{ secrets.DOCKER_NAME }}/serveur:latest
           push: ${{ github.ref == 'refs/heads/main' }}
