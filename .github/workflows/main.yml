@@ -1,4 +1,5 @@
 name: CI DevOps 2024
+
 on:
   push:
     branches:
@@ -22,6 +23,9 @@ jobs:
         run: |
           cd TP1/API/simple-api-student-main
           mvn clean verify
+
+      - name: SonarCloud analysis
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=devops-2024 -Dsonar.organization=devops-school -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./simple-api/pom.xml
 
   build-and-push-docker-image:
     needs: test-backend
