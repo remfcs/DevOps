@@ -1,0 +1,15 @@
+---
+# tasks file for roles/api
+- name: Run API
+  docker_container:
+    name: api
+    image: remyfrancis510/backend:1.0
+    state: started
+    networks:
+      - name: app-network
+    env:
+      DB_host: database
+      DATABASE_USER: usr
+      DATABASE_PASSWORD: pwd
+      DATABASE_NAME: db
+      DATABASE_PORT: "5432"

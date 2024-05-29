@@ -1,0 +1,10 @@
+- hosts: all
+  gather_facts: false
+  become: true
+
+  roles:
+    - app-network
+    - docker
+    - database
+    - http
+    - api
