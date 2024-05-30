@@ -1,10 +1,9 @@
----
-
 - name: Install device-mapper-persistent-data
   yum:
     name: device-mapper-persistent-data
     state: latest
-  
+    use_backend: yum3
+    
 - name: Install lvm2
   yum:
     name: lvm2
@@ -39,4 +38,6 @@
   docker_login:
     username: remyfrancis510
     password: dckr_pat_JSrwb0MwyuddLdoycUneWqjMzmM
-    reauthorize: yes  
+    reauthorize: yes
+  vars:
+    ansible_python_interpreter: /usr/bin/python3

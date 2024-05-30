@@ -3,5 +3,3 @@
 - name: Create network
   docker_network:
     name: app-network
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
