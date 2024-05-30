@@ -1,0 +1,23 @@
+name: Run Ansible Playbook
+
+on:
+  workflow_run:
+    workflows: ["CI DevOps 2024"]
+    types:
+      - completed
+
+jobs:
+  run-ansible-playbook:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Ansible
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ansible
+
+    - name: Run Ansible Playbook
+      run: ansible-playbook -i inventories/setup.yml playbook.yml
