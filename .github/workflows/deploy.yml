@@ -14,10 +14,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: SSH
+      uses: webfactory/ssh-agent@v0.5.3  # Use the webfactory/ssh-agent action to set up SSH
+        with:
+          ssh-private-key: ${{ secrets.ANSIBLE_TOKEN }} 
     - name: Set up Ansible
       run: |
         sudo apt-get update
         sudo apt-get install -y ansible
-
+ 
     - name: Run Ansible Playbook
       run: ansible-playbook -i TP2/ansible/inventories/setup.yml TP2/ansible/playbook.yml
