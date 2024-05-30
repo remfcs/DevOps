@@ -39,4 +39,4 @@
   docker_login:
     username: remyfrancis510
     password: dckr_pat_JSrwb0MwyuddLdoycUneWqjMzmM
-    reauthorize: yes
+    reauthorize: yes  
