@@ -16,8 +16,9 @@ jobs:
 
     - name: SSH
       uses: webfactory/ssh-agent@v0.5.3  # Use the webfactory/ssh-agent action to set up SSH
-        with:
-          ssh-private-key: ${{ secrets.ANSIBLE_TOKEN }} 
+      with:
+        ssh-private-key: ${{ secrets.ANSIBLE_TOKEN }} 
+    
     - name: Set up Ansible
       run: |
         sudo apt-get update
