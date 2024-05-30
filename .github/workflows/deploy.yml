@@ -5,11 +5,13 @@ on:
     workflows: ["CI DevOps 2024"]
     types:
       - completed
+    branches:
+      - main
 
 jobs:
   run-ansible-playbook:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -18,7 +20,12 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.3  # Use the webfactory/ssh-agent action to set up SSH
       with:
         ssh-private-key: ${{ secrets.ANSIBLE_TOKEN }} 
-    
+        
+    - name: Add SSH known hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H remy.francis.takima.cloud >> ~/.ssh/known_hosts
+
     - name: Set up Ansible
       run: |
         sudo apt-get update
